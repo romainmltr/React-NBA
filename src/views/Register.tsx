@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './components/App'
-import './scss/index.scss'
+import Register from '../components/RegisterComponent'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <App />
+    <Register />
 )

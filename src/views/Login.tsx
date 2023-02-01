@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './components/App'
-import './scss/index.scss'
+import Login from '../components/LoginComponent'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <App />
+    <Login />
 )
