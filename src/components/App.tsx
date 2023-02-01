@@ -1,32 +1,43 @@
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 import reactLogo from '../assets/react.svg'
 import '../scss/views/App.scss'
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [items, setItems] = useState([])
+    
+    useEffect(() => {
+        fetch('https://www.balldontlie.io/api/v1/games')
+            .then(response => response.json())
+            .then(data => setItems(data.data))
+    }, [])
 
-  return (
+    console.log(items)
+
+    return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        <div className="matches-container">
+            <h3>All matches</h3>
+            <div className="matches-wrapper">
+                {items.map((item:any) => (
+                    <div className="match-cell" key={item.id}>
+                        <div className="match-date">
+                            <p>2018-10-16</p>
+                        </div>
+                        <div className="match-details">
+                            <div className="match-home-team">
+                                <p>{item.home_team.full_name}</p>
+                            </div>
+                            <div className="match-score">
+                                <p>{item.home_team_score} : {item.visitor_team_score}</p>
+                            </div>
+                            <div className="match-visitor-team">
+                                <p>{item.visitor_team.full_name}</p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
     </div>
   )
 }
