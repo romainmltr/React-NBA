@@ -2,16 +2,16 @@ import {useEffect, useState} from 'react'
 import reactLogo from '../assets/react.svg'
 import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
 
-function MatchesList() {
+function MatchesList({currentTeam}) {
     const [items, setItems] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 8;
 
     useEffect(() => {
-        fetch(`https://www.balldontlie.io/api/v1/games?page=${currentPage}&per_page=${itemsPerPage}`)
+        fetch(`https://www.balldontlie.io/api/v1/games?page=${currentPage}&per_page=${itemsPerPage}&team_ids[]=${currentTeam}`)
             .then(response => response.json())
             .then(data => setItems(data.data))
-    }, [currentPage])
+    }, [currentPage, currentTeam])
 
     // @ts-ignore
     return (
@@ -39,6 +39,9 @@ function MatchesList() {
                             <td className="px-6 py-4">
                                 {item.visitor_team.full_name}
                             </td>
+                            <td className="px-6 py-4">
+                                {item.id}
+                            </td>
                         </tr>
                     ))}
                     </tbody>
@@ -48,29 +51,28 @@ function MatchesList() {
                 <ul className="inline-flex items-center -space-x-px">
                     {currentPage > 1 && (
                         <li>
-                            <a href="#" onClick={() => setCurrentPage(currentPage - 1)}
+                            <button onClick={() => setCurrentPage(currentPage - 1)}
                                className="block px-3 py-2 leading-tight ml-0 rounded-l-lg bg-darkgray text-gray-400 hover:bg-darkgrayHover hover:text-white">
                                 <span className="sr-only">Previous</span>
                                 <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                      xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"></path>
                                 </svg>
-                            </a>
+                            </button>
                         </li>
                     )}
                     <li>
-                        <a href="#" onClick={() => setCurrentPage( 1)}
-                           className="px-3 py-2 bg-darkgray text-gray-400 hover:bg-darkgrayHover hover:text-white rounded-l">1</a>
+                        <button onClick={() => setCurrentPage( 1)}
+                           className="px-3 py-2 bg-darkgray text-gray-400 hover:bg-darkgrayHover hover:text-white rounded-l">1</button>
                     </li>
                     <li>
-                        <a href="#" onClick={() => setCurrentPage(currentPage + 1)}
-                           className="block px-3 py-2 leading-tight rounded-r-lg bg-darkgray text-gray-400 hover:bg-darkgrayHover hover:text-white">
+                        <button onClick={() => setCurrentPage(currentPage + 1)} className="block px-3 py-2 leading-tight rounded-r-lg bg-darkgray text-gray-400 hover:bg-darkgrayHover hover:text-white">
                             <span className="sr-only">Next</span>
                             <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"></path>
                             </svg>
-                        </a>
+                        </button>
                     </li>
                 </ul>
             </div>
