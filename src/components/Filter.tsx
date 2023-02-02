@@ -1,20 +1,39 @@
 import React, {useState, useEffect} from "react";
 
-function TeamsList() {
+function FilterSidebar() {
     const [teams, setTeams] = useState([]);
     const [locationFilter, setLocationFilter] = useState("");
+    const [players, setPlayers] = useState([]);
+    const [positionFilter, setPositionFilter] = useState("");
 
+    // Part for the teams
     useEffect(() => {
         fetch("https://www.balldontlie.io/api/v1/teams")
             .then(response => response.json())
             .then(data => setTeams(data.data));
     }, []);
+
     //console.log(teams);
-    const handleFilterChange = filter => {
+    const handleTeamFilterChange = filter => {
         setLocationFilter(filter);
     };
 
     const filteredTeams = teams.filter(team => locationFilter === "" || team.conference === locationFilter);
+
+    // Part for the players
+
+    useEffect(() => {
+        fetch("https://www.balldontlie.io/api/v1/players")
+            .then(response => response.json())
+            .then(data => setPlayers(data.data));
+    }, []);
+
+    const handlePositionFilterChange = filter => {
+        setPositionFilter(filter);
+    };
+
+    const filteredPlayers = players.filter(player => positionFilter === "" || player.position === positionFilter);
+
 
     return (
         <div>
@@ -23,11 +42,7 @@ function TeamsList() {
                     type="button"
                     className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                 <span className="sr-only">Open sidebar</span>
-                <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path clip-rule="evenodd" fill-rule="evenodd"
-                          d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
-                </svg>
+
             </button>
 
             <aside id="sidebar-multi-level-sidebar"
@@ -37,15 +52,11 @@ function TeamsList() {
                     <ul className="space-y-2">
                         <li>
                             <a href="#"
-                               className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                                <svg aria-hidden="true"
-                                     className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                                     fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                                    <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-                                </svg>
-                                <span className="ml-3">Dashboard</span>
+                               className="flex flex-col p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white">
+                                <img src="src/assets/NBA-logo-illustration.jpg"  className="scale-50"></img>
+                                <span className="ml-3">Information NBA </span>
                             </a>
+
                         </li>
                         <li>
                             <button type="button"
@@ -65,17 +76,17 @@ function TeamsList() {
                             <ul id="dropdown-example" className="hidden py-2 space-y-2">
                                 <button
                                     className="flex items-center w-1/12  font-normal text-gray-400 transition duration-75  group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-300"
-                                    onClick={() => handleFilterChange("")}
+                                    onClick={() => handleTeamFilterChange("")}
                                     className={locationFilter === "" ? "active" : ""}>Toutes
                                 </button>
                                 <button
                                     className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                                    onClick={() => handleFilterChange("East")}
+                                    onClick={() => handleTeamFilterChange("East")}
                                     className={locationFilter === "East" ? "active" : ""}>Est
                                 </button>
                                 <button
                                     className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                                    onClick={() => handleFilterChange("West")}
+                                    onClick={() => handleTeamFilterChange("West")}
                                     className={locationFilter === "West" ? "active" : ""}>Ouest
                                 </button>
                                 <ul>
@@ -88,12 +99,62 @@ function TeamsList() {
                             </ul>
                         </li>
 
+
+
+
+
+
+
+                        <li>
+                            <button type="button"
+                                className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                                aria-controls="dropdown-example-2" data-collapse-toggle="dropdown-example-2"
+                                id="location-filterPlayer">
+                                <span className="flex-1 ml-3 text-left whitespace-nowrap"
+                                      sidebar-toggle-item>Player</span>
+                            <svg sidebar-toggle-item className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                      clip-rule="evenodd">
+                                </path>
+                            </svg>
+                        </button>
+                        <li>
+                            <ul id="dropdown-example-2" className="hidden py-2 space-y-2">
+                                <button
+                                    className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                                    onClick={() => handlePositionFilterChange("G")}>Shooting Guard
+                                </button>
+                                <button
+                                    className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                                    onClick={() => handlePositionFilterChange("F")}>Small Forward
+                                </button>
+                                <button
+                                    className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                                    onClick={() => handlePositionFilterChange("G")}>Power Forward
+                                </button>
+                                <button
+                                    className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                                    onClick={() => handlePositionFilterChange("C")}>Point Guard
+                                </button>
+                                <ul>
+                                    {filteredPlayers.map(player => (
+                                        <a href="#" className="lex items-center p-2 text-base font-normal text-gray-900 dark:text-white">
+                                        <li key={player.id}>{player.first_name} {player.last_name}</li>
+                                        </a>
+                                    ))}
+                                </ul>
+                            </ul>
+                            </li>
+                        </li>
                     </ul>
                 </div>
             </aside>
+
         </div>
     );
 }
 
 
-export default TeamsList;
+export default FilterSidebar;

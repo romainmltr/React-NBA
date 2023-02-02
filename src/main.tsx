@@ -4,6 +4,7 @@ import App from './components/App'
 import './scss/index.scss'
 import Filter from './components/Filter'
 
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <App />
