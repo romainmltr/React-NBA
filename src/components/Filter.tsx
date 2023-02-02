@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import {useState, useEffect, SetStateAction, createContext, useContext} from "react";
 import MatchesList from "./MatchesList";
 
 function FilterSidebar() {
@@ -6,22 +6,19 @@ function FilterSidebar() {
     const [locationFilter, setLocationFilter] = useState("");
     const [players, setPlayers] = useState([]);
     const [positionFilter, setPositionFilter] = useState("");
-    const [currentTeam, setCurrentTeam] = useState(1);
+    const [currentTeam, setCurrentTeam] = useState(0);
 
-    // Part for the teams
     useEffect(() => {
         fetch("https://www.balldontlie.io/api/v1/teams")
             .then(response => response.json())
             .then(data => setTeams(data.data));
     }, []);
 
-    const handleTeamFilterChange = filter => {
+    const handleTeamFilterChange = (filter: SetStateAction<string>) => {
         setLocationFilter(filter);
     };
 
     const filteredTeams = teams.filter(team => locationFilter === "" || team.conference === locationFilter);
-
-    // Part for the players
 
     useEffect(() => {
         fetch("https://www.balldontlie.io/api/v1/players")
@@ -29,7 +26,7 @@ function FilterSidebar() {
             .then(data => setPlayers(data.data));
     }, []);
 
-    const handlePositionFilterChange = filter => {
+    const handlePositionFilterChange = (filter: SetStateAction<string>) => {
         setPositionFilter(filter);
     };
 
@@ -51,10 +48,7 @@ function FilterSidebar() {
                 <div className="h-full px-3 py-4 overflow-y-auto bg-darkgray">
                     <ul className="space-y-2">
                         <li>
-                            <a href="#"
-                               className="flex flex-col p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white">
-                                <span className="ml-3">Information NBA </span>
-                            </a>
+                            <p className="flex flex-col p-2 rounded-lg text-white">NBA</p>
                         </li>
                         <li>
                             <button type="button"
@@ -144,8 +138,6 @@ function FilterSidebar() {
                     </div>
                 </div>
             </div>
-
-
         </div>
     )
 }

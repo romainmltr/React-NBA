@@ -2,15 +2,23 @@ import {useEffect, useState} from 'react'
 import reactLogo from '../assets/react.svg'
 import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
 
-function MatchesList({currentTeam}) {
+function MatchesList({currentTeam}: any) {
     const [items, setItems] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 8;
+    const [firstFetch, setFirstFetch] = useState(true);
 
     useEffect(() => {
-        fetch(`https://www.balldontlie.io/api/v1/games?page=${currentPage}&per_page=${itemsPerPage}&team_ids[]=${currentTeam}`)
-            .then(response => response.json())
-            .then(data => setItems(data.data))
+        if (firstFetch) {
+            fetch(`https://www.balldontlie.io/api/v1/games?page=${currentPage}&per_page=${itemsPerPage}`)
+                .then(response => response.json())
+                .then(data => setItems(data.data))
+            setFirstFetch(false)
+        } else {
+            fetch(`https://www.balldontlie.io/api/v1/games?page=${currentPage}&per_page=${itemsPerPage}&team_ids[]=${currentTeam}`)
+                .then(response => response.json())
+                .then(data => setItems(data.data))
+        }
     }, [currentPage, currentTeam])
 
     // @ts-ignore
