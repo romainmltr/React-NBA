@@ -1,15 +1,17 @@
 import {useState, useEffect, SetStateAction, createContext, useContext} from "react";
 import MatchesList from "./MatchesList";
+import PlayerDashoard from "./filter-player";
 
 function FilterSidebar() {
     const [teams, setTeams] = useState([]);
     const [locationFilter, setLocationFilter] = useState("");
     const [players, setPlayers] = useState([]);
     const [positionFilter, setPositionFilter] = useState("");
-    const [currentTeam, setCurrentTeam] = useState(0);
+    const [currentPlayer, setCurrentPlayer] = useState(13);
+    const [currentTeam, setCurrentTeam] = useState(1);
 
     useEffect(() => {
-        fetch("https://www.balldontlie.io/api/v1/teams")
+        fetch("https://www.balldontlie.io/api/v1/teams?per_page=100")
             .then(response => response.json())
             .then(data => setTeams(data.data));
     }, []);
@@ -21,7 +23,7 @@ function FilterSidebar() {
     const filteredTeams = teams.filter(team => locationFilter === "" || team.conference === locationFilter);
 
     useEffect(() => {
-        fetch("https://www.balldontlie.io/api/v1/players")
+        fetch("https://www.balldontlie.io/api/v1/players?per_page=100")
             .then(response => response.json())
             .then(data => setPlayers(data.data));
     }, []);
@@ -30,8 +32,11 @@ function FilterSidebar() {
         setPositionFilter(filter);
     };
 
+
     const filteredPlayers = players.filter(player => positionFilter === "" || player.position === positionFilter);
 
+
+    console.log(currentPlayer)
     // @ts-ignore
     return (
         <div>
@@ -148,7 +153,9 @@ function FilterSidebar() {
                 <div className="p-4 border-2 border-gray-200 rounded-lg dark:border-gray-700">
                     <h2 className="font-bold text-2xl mb-4">Welcome Quentin 👋</h2>
                     <div className="grid grid-rows-3 grid-flow-col gap-4">
-                        <div className="col-span-2 bg-red-500">02</div>
+                        <div className="col-span-2 ">
+                            <PlayerDashoard currentPlayer={currentPlayer}/>
+                        </div>
                         <div className="row-span-2 col-span-2">
                             <MatchesList currentTeam={currentTeam}/>
                         </div>

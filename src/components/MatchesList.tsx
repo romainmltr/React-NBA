@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react'
-import reactLogo from '../assets/react.svg'
-import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
+
 
 function MatchesList({currentTeam}: any) {
     const [items, setItems] = useState([])
