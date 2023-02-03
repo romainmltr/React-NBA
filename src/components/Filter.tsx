@@ -136,7 +136,7 @@ function FilterSidebar() {
                                 <ul>
                                     {filteredPlayers.map(player => (
                                         <li key={player.id}>
-                                            <a className="flex cursor-pointer hover:text-white hover:underline items-center p-2 text-base font-normal text-gray-400">
+                                            <a onClick={() => setCurrentPlayer(player.id)} className="flex cursor-pointer hover:text-white hover:underline items-center p-2 text-base font-normal text-gray-400">
                                                 <p>{player.first_name} {player.last_name}</p>
                                             </a>
                                         </li>
