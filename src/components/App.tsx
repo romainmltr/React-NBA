@@ -5,6 +5,10 @@ import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
 import MatchesList from "./MatchesList";
 import Filter from "./Filter";
 
+
+import Register from './RegisterComponent'
+import Login from './LoginComponent'
+
 function App() {
 
     // @ts-ignore

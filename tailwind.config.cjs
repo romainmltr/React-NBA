@@ -1,12 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
-      backgroundImage: {
-        'bannerNba': "url('src/assets/banner-nba.jpg')",
-
-      }
+      colors: {
+        black: '#161616',
+        darkgray: '#1E1E1E',
+        darkgrayHover: '#383838',
+        lightgray: '#303030',
+        purple: '#776DD4',
+      },
+      images : {
+      },
     },
   },
   plugins: [],
