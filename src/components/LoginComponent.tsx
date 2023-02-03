@@ -63,8 +63,7 @@ function Login() {
         <div className="bg-video">
             <div className={"video-content space-y-2 w-full h-full flex justify-center "}>
                 <form className={"w-2/6"} onSubmit={handleSubmit}>
-                    <h2> Veuillez vous connecter </h2>
-                        <span>Pour accéder au site </span>
+                    <h2 className="text-4xl font-bold mb-10 text-center">Login</h2>
                     <div className={"mb-6"}>
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                         <input

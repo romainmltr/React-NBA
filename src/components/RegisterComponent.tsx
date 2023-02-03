@@ -158,7 +158,7 @@ function Register() {
 							I agree with the{" "}
 							<a
 								href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley"
-								className="text-blue-600 hover:underline dark:text-blue-500"
+								className="text-blue-600 hover:underline dark:text-purple"
 							>
 								terms and conditions
 							</a>
@@ -166,9 +166,8 @@ function Register() {
 					</div>
 					<button
 						type="submit"
-						className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+						className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple dark:hover:bg-purple dark:focus:ring-blue-800"
 					>
-						Register
 						{loading ? "Loading..." : "Register"}
 					</button>
 					{error && <p className="text-danger">{error}</p>}

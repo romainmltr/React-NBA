@@ -41,7 +41,7 @@ function FilterSidebar() {
             <button data-drawer-target="sidebar-multi-level-sidebar"
                     data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar"
                     type="button"
-                    className="inline-flex items-center p-2 mt-2 ml-3 rounded-lg bg-red-600 hover:bg-gray-100 focus:outline-none ">
+                    className="hidden inline-flex items-center p-2 mt-2 ml-3 rounded-lg bg-red-600 hover:bg-gray-100 focus:outline-none ">
                 <span className="sr-only text-amber-50">Open sidebar</span>
             </button>
 
