@@ -1,5 +1,6 @@
 import {useState, useEffect} from "react";
 import MatchesList from "./MatchesList";
+import PlayerDashoard from "./filter-player";
 
 function FilterSidebar() {
     const [teams, setTeams] = useState([]);
@@ -7,10 +8,11 @@ function FilterSidebar() {
     const [players, setPlayers] = useState([]);
     const [positionFilter, setPositionFilter] = useState("");
     const [currentTeam, setCurrentTeam] = useState(1);
+    const [currentPlayer, setCurrentPlayer] = useState(13);
 
     // Part for the teams
     useEffect(() => {
-        fetch("https://www.balldontlie.io/api/v1/teams")
+        fetch("https://www.balldontlie.io/api/v1/teams?per_page=100")
             .then(response => response.json())
             .then(data => setTeams(data.data));
     }, []);
@@ -24,7 +26,7 @@ function FilterSidebar() {
     // Part for the players
 
     useEffect(() => {
-        fetch("https://www.balldontlie.io/api/v1/players")
+        fetch("https://www.balldontlie.io/api/v1/players?per_page=100")
             .then(response => response.json())
             .then(data => setPlayers(data.data));
     }, []);
@@ -33,8 +35,11 @@ function FilterSidebar() {
         setPositionFilter(filter);
     };
 
+
     const filteredPlayers = players.filter(player => positionFilter === "" || player.position === positionFilter);
 
+
+    console.log(currentPlayer)
     // @ts-ignore
     return (
         <div>
@@ -119,11 +124,13 @@ function FilterSidebar() {
                                     className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                                     onClick={() => handlePositionFilterChange("C")}>Point Guard
                                 </button>
+                                <button className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                                        onClick={() => handlePositionFilterChange("")}> Toutes</button>
                                 <ul>
                                     {filteredPlayers.map(player => (
-                                        <a href="#" className="lex items-center p-2 text-base font-normal text-gray-900 dark:text-white">
+                                        <button onClick={() => setCurrentPlayer(player.id)} className="lex items-center p-2 text-base font-normal text-gray-900 dark:text-white">
                                         <li key={player.id}>{player.first_name} {player.last_name}</li>
-                                        </a>
+                                        </button>
                                     ))}
                                 </ul>
                             </ul>
@@ -136,7 +143,9 @@ function FilterSidebar() {
             <div className="p-4 sm:ml-64">
                 <div className="p-4 border-2 border-gray-200 rounded-lg dark:border-gray-700">
                     <div className="grid grid-rows-3 grid-flow-col gap-4">
-                        <div className="col-span-2 bg-red-500">02</div>
+                        <div className="col-span-2">
+                            <PlayerDashoard currentPlayer={currentPlayer}/>
+                        </div>
                         <div className="row-span-2 col-span-2">
                             <MatchesList currentTeam={currentTeam}/>
                         </div>
