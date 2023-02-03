@@ -6,20 +6,20 @@ import { User } from '../types/User.type';
 let instance: any = null
 updateAxiosInstance()
 
-async function getAllUsers() {
+export async function getUsers() {
     // get all users from mongodb
     const response = await instance.get('/latest');
     return response.data.record;
 }
 
 export function getUserByEmail(email: string) {
-    const users = getAllUsers();
+    const users = getUsers();
     users.then((users: User[]) => {
         return users.find((user: User) => user.email === email);
     });
 }
 
-async function CreateUser(user: User) {
+export async function CreateUser(user: User) {
     // add user to mongodb
     const response = await instance.put('/', user);
     return response.data;
@@ -27,10 +27,12 @@ async function CreateUser(user: User) {
 
 // create the login system with jsonbin.io and filter errors
 export async function Login(email: string, password: string) {
-    const users = await getAllUsers();
+    const users = await getUsers();
     const user = users.find((user: User) => user.email === email);
     if (user) {
         if (user.password === password) {
+            // set to local storage the user is logged in
+            localStorage.setItem('isLogged', 'true');
             return {
                 success: 200,
                 message: 'Login successful',
@@ -40,6 +42,16 @@ export async function Login(email: string, password: string) {
         }
     } else {
         throw new Error('Email not found');
+    }
+}
+
+export async function isLogged() {
+    // check if user is logged in
+    const checkIfUserIsLogged = localStorage.getItem('isLogged');
+    if (checkIfUserIsLogged === 'true') {
+        return true;
+    } else {
+        return false;
     }
 }
 
@@ -57,5 +69,3 @@ export async function updateAxiosInstance() {
 
     console.log('Axios instance updated');
 }
-
-export { CreateUser, getAllUsers };
