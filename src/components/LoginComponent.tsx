@@ -60,53 +60,58 @@ function Login() {
 
     // return the form
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col-md-6 mt-5 mx-auto">
-                    <form noValidate onSubmit={handleSubmit}>
-                        <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
-                        <div className="form-group">
-                            <label htmlFor="email">Email address</label>
-                            <input
-                                type="email"
-                                className="form-control"    
-                                name="email"
-                                placeholder="Enter email"
-                                value={login.email}
-                                onChange={handleChange}
-                            />
+        <div className="bg-video">
+            <div className={"video-content space-y-2 w-full h-full flex justify-center "}>
+                <form className={"w-2/6"} onSubmit={handleSubmit}>
+                    <h2> Veuillez vous connecter </h2>
+                        <span>Pour accéder au site </span>
+                    <div className="mb-6 mt-6">
+                        <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                        <input
+                            type="text"
+                            name="username"
+                            id="username"
+                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                            onChange={handleChange}
+                            value={login.username}
+                            placeholder="Username"
+                        />
+                    </div>
+                    <div className={"mb-6"}>
+                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <input
+                            className=" form-control shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                            type="email"
+                            name="email"
+                            id="email"
+                            onChange={handleChange}
+                            value={login.email}
+                        />
+                    </div>
+                    <div className="mb-6">
+                        <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                htmlFor="password">Password
+                        </label>
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            className="form-control shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                            onChange={handleChange}
+                            value={login.password}
+                        />
+                    </div>
+                    <div className="flex items-start mb-6">
+                        <div className="flex items-center h-5">
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="password">Password</label>
-                            <input
-                                type="password"
-                                className="form-control"
-                                name="password"
-                                placeholder="Password"
-                                value={login.password}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <button
-                            type="submit"
-                            className="btn btn-lg btn-primary btn-block"
-                        >
-                            {loading ? (
-                                <div className="spinner-border text-light" role="status">
-                                    <span className="sr-only">Loading...</span>
-                                </div>
-                            ) : (
-                                "Sign in"
-                            )}
-                        </button>
-                    </form>
-                    {error && (
-                        <div className="alert alert-danger mt-3" role="alert">
-                            {error}
-                        </div>
-                    )}
-                </div>
-            </div>
+                    </div>
+                    <button type="submit"
+                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        {loading ? "Loading..." : "Register"}
+                    </button>
+                    {error && <p className="text-danger">{error}</p>}
+                </form>
+                    </div>
         </div>
     );
 }
