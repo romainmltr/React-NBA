@@ -39,13 +39,13 @@ function TopTeams() {
     // @ts-ignore
     return (
         <div className="TopTeams p-8">
-            <h1 className="text-2xl font-bold mb-10">Top Teams</h1>
+            <h1 className="text-2xl font-bold mb-10">Top 15 Teams</h1>
             <ul className="flex flex-col gap-3">
                 {topTen.map((obj, index) => (
                     <li key={index}>
                         <div className="flex items-center justify-between">
                             <p>{obj.full_name}</p>
-                            <p className="text-purple font-bold">{obj.score}</p>
+                            <p className="text-purple font-bold">{obj.score}<span className="text-gray-400 text-sm ml-1">pts</span></p>
                         </div>
                     </li>
                 ))}
