@@ -6,6 +6,9 @@ import MatchesList from "./MatchesList";
 import Filter from "./Filter";
 
 
+import Register from './RegisterComponent'
+import Login from './LoginComponent'
+
 function App() {
 
     // @ts-ignore
