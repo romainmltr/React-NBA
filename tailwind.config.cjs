@@ -13,7 +13,8 @@ module.exports = {
         lightgray: '#303030',
         purple: '#776DD4',
       },
-      images : {
+      backgroundImage : {
+        'banner': "url('./src/assets/banner-nba.jpg')",
       },
     },
   },
