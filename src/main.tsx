@@ -1,15 +1,23 @@
-import React, {createContext} from 'react'
+import React from 'react';
 import ReactDOM from 'react-dom/client'
 import App from './components/App'
 import './scss/index.scss'
-import MatchesList from "./components/MatchesList";
-import {BrowserRouter} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+import Login from './components/LoginComponent'
+import Register from './components/RegisterComponent'
+import NotFound from './components/NotFoundComponent'
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-      <BrowserRouter>
-          <App />
-      </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/app" element={<App />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
 )

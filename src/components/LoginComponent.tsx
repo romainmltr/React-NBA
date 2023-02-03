@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import * as Auth from "../services/Auth";
+import * as Auth from "../services/AuthServices";
 import { User } from "../types/User.type";
 import { v4 as uuid } from '@lukeed/uuid'
 import bcrypt from 'bcryptjs'
@@ -23,7 +23,7 @@ function Login() {
     const [userFromDb , setuserFromDb] = useState([] as User[]);
     // get all users from the database
     useEffect(() => {
-        Auth.getAllUsers().then((users) => {
+        Auth.getUsers().then((users) => {
             setuserFromDb(users);
         });
     }, []);
@@ -31,7 +31,6 @@ function Login() {
     // handle submit event on form
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
 
         // check if all fields are filled
         if (!login.email || !login.password) {
