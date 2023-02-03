@@ -47,9 +47,6 @@ function MatchesList({currentTeam}: any) {
                             <td className="px-6 py-4">
                                 {item.visitor_team.full_name}
                             </td>
-                            <td className="px-6 py-4">
-                                {item.id}
-                            </td>
                         </tr>
                     ))}
                     </tbody>

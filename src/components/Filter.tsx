@@ -47,8 +47,11 @@ function FilterSidebar() {
                    aria-label="Sidebar">
                 <div className="h-full px-3 py-4 overflow-y-auto bg-darkgray">
                     <ul className="space-y-2">
-                        <li className="mb-10">
-                            <p className="flex flex-col p-2 rounded-lg text-xl text-white uppercase font-bold">nba tracker</p>
+                        <li className="mb-8">
+                            <p className="p-2 text-xl text-white uppercase font-bold">nba tracker</p>
+                        </li>
+                        <li>
+                            <p className="flex flex-col p-2 text-white font-bold capitalize text-base">Filter matches & player</p>
                         </li>
                         <li className="pb-2">
                             <button type="button"
@@ -66,17 +69,17 @@ function FilterSidebar() {
                                 </svg>
                             </button>
                             <ul id="dropdown-example" className="hidden py-2 space-y-2">
-                                <div className="flex items-center justify-start gap-2 flex-wrap mb-8">
+                                <div className="flex items-center justify-start gap-2 flex-wrap mb-8 mt-3">
                                     <button
-                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple bg-darkgray border border-purple hover:text-white"
+                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
                                         onClick={() => handleTeamFilterChange("")}> Toutes
                                     </button>
                                     <button
-                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple bg-darkgray border border-purple hover:text-white"
+                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
                                         onClick={() => handleTeamFilterChange("East")}>Est
                                     </button>
                                     <button
-                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple bg-darkgray border border-purple hover:text-white"
+                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
                                         onClick={() => handleTeamFilterChange("West")}>Ouest
                                     </button>
                                 </div>
@@ -91,7 +94,6 @@ function FilterSidebar() {
                                 </ul>
                             </ul>
                         </li>
-
                         <li>
                             <button type="button" className="flex items-center bg-lightgray w-full p-2 text-base font-normal transition focus:outline-purple duration-75 rounded-lg group text-white hover:bg-darkgrayHover"
                                 aria-controls="dropdown-example-2" data-collapse-toggle="dropdown-example-2"
@@ -108,21 +110,21 @@ function FilterSidebar() {
                         </button>
                         <li>
                             <ul id="dropdown-example-2" className="hidden py-2 space-y-2">
-                                <div className="flex items-center justify-start gap-2 flex-wrap mb-8">
+                                <div className="flex items-center justify-start gap-2 flex-wrap mb-8 mt-3">
                                     <button
-                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple bg-darkgray border border-purple hover:text-white"
+                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
                                         onClick={() => handlePositionFilterChange("G")}>S. Guard
                                     </button>
                                     <button
-                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple bg-darkgray border border-purple hover:text-white"
+                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
                                         onClick={() => handlePositionFilterChange("F")}>S. Forward
                                     </button>
                                     <button
-                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple bg-darkgray border border-purple hover:text-white"
+                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
                                         onClick={() => handlePositionFilterChange("G")}>P. Forward
                                     </button>
                                     <button
-                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple bg-darkgray border border-purple hover:text-white"
+                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
                                         onClick={() => handlePositionFilterChange("C")}>P. Guard
                                     </button>
                                 </div>
