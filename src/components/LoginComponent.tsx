@@ -60,18 +60,20 @@ function Login() {
 
     // return the form
     return (
-        <div className="bg-video">
-            <div className={"video-content space-y-2 w-full h-full flex justify-center "}>
-                <form className={"w-2/6"} onSubmit={handleSubmit}>
-                    <h2 className="text-4xl font-bold mb-10 text-center">Login</h2>
+        <div className="relative h-screen flex  flex-col items-center justify-center text-center text-white py-0 px-3">
+            <video src="src/assets/NBA Motion_ Top Plays In Special FX _ Part 1.mp4" autoPlay loop muted className="blur-sm z-10 w-full h-full" />
+
+            <div className={" p-8 flex justify-center bg-darkgray z-20 absolute rounded-xl"}>
+                <form onSubmit={handleSubmit}>
                     <div className={"mb-6"}>
                         <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                         <input
-                            className=" form-control shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                            className="w-60 shadow-sm border border-gray-300 text-sm rounded-lg block w-full p-2.5 bg-lightgray border-gray-600 placeholder-gray-400 text-white focus:ring-purple focus:border-purple focus:outline-purple shadow-sm-light"
                             type="email"
                             name="email"
                             id="email"
                             onChange={handleChange}
+                            placeholder={"Email"}
                             value={login.email}
                         />
                     </div>
@@ -83,7 +85,8 @@ function Login() {
                             type="password"
                             name="password"
                             id="password"
-                            className="form-control shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                            placeholder={"Password"}
+                            className="w-60 shadow-sm border border-gray-300 text-sm rounded-lg block w-full p-2.5 bg-lightgray border-gray-600 placeholder-gray-400 text-white focus:ring-purple focus:border-purple focus:outline-purple shadow-sm-light"
                             onChange={handleChange}
                             value={login.password}
                         />

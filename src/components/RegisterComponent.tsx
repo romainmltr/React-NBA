@@ -93,13 +93,15 @@ function Register() {
 
 	// return the form
 	return (
-		<div className="relative h-screen flex flex-col items-center justify-center text-center text-white py-0 px-3">
-			<div className={"w-full flex justify-center "}>
+		<div className="relative h-screen flex  flex-col items-center justify-center text-center text-white py-0 px-3">
+			<video src="src/assets/NBA Motion_ Top Plays In Special FX _ Part 1.mp4" autoPlay loop muted className="blur-sm z-10 w-full h-full" />
+
+			<div className={" p-8 flex justify-center bg-darkgray z-20 absolute rounded-xl"}>
 				<form onSubmit={handleSubmit}>
 					<div className="mb-6">
 						<label
 							htmlFor="username"
-							className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+							className="block mb-2 text-sm font-medium text-white"
 						>
 							Username
 						</label>
@@ -107,7 +109,7 @@ function Register() {
 							type="text"
 							name="username"
 							id="username"
-							className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+							className="shadow-sm border border-gray-300 text-sm rounded-lg block w-full p-2.5 bg-lightgray border-gray-600 placeholder-gray-400 text-white focus:ring-purple focus:border-purple focus:outline-purple shadow-sm-light"
 							onChange={handleChange}
 							value={newUser.username}
 							placeholder="Username"
@@ -121,11 +123,12 @@ function Register() {
 							Email
 						</label>
 						<input
-							className=" form-control shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+							className="shadow-sm border border-gray-300 text-sm rounded-lg block w-full p-2.5 bg-lightgray border-gray-600 placeholder-gray-400 text-white focus:ring-purple focus:border-purple focus:outline-purple shadow-sm-light"
 							type="email"
 							name="email"
 							id="email"
 							onChange={handleChange}
+							placeholder="Email"
 							value={newUser.email}
 						/>
 					</div>
@@ -140,8 +143,9 @@ function Register() {
 							type="password"
 							name="password"
 							id="password"
-							className="form-control shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+							className="shadow-sm border border-gray-300 text-sm rounded-lg block w-full p-2.5 bg-lightgray border-gray-600 placeholder-gray-400 text-white focus:ring-purple focus:border-purple focus:outline-purple shadow-sm-light"
 							onChange={handleChange}
+							placeholder="Password"
 							value={newUser.password}
 						/>
 					</div>
