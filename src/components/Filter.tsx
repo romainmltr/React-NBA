@@ -1,15 +1,17 @@
 import {useState, useEffect, SetStateAction, createContext, useContext} from "react";
 import MatchesList from "./MatchesList";
+import PlayerDashoard from "./filter-player";
 
 function FilterSidebar() {
     const [teams, setTeams] = useState([]);
     const [locationFilter, setLocationFilter] = useState("");
     const [players, setPlayers] = useState([]);
     const [positionFilter, setPositionFilter] = useState("");
-    const [currentTeam, setCurrentTeam] = useState(0);
+    const [currentPlayer, setCurrentPlayer] = useState(13);
+    const [currentTeam, setCurrentTeam] = useState(1);
 
     useEffect(() => {
-        fetch("https://www.balldontlie.io/api/v1/teams")
+        fetch("https://www.balldontlie.io/api/v1/teams?per_page=100")
             .then(response => response.json())
             .then(data => setTeams(data.data));
     }, []);
@@ -21,7 +23,7 @@ function FilterSidebar() {
     const filteredTeams = teams.filter(team => locationFilter === "" || team.conference === locationFilter);
 
     useEffect(() => {
-        fetch("https://www.balldontlie.io/api/v1/players")
+        fetch("https://www.balldontlie.io/api/v1/players?per_page=100")
             .then(response => response.json())
             .then(data => setPlayers(data.data));
     }, []);
@@ -30,8 +32,11 @@ function FilterSidebar() {
         setPositionFilter(filter);
     };
 
+
     const filteredPlayers = players.filter(player => positionFilter === "" || player.position === positionFilter);
 
+
+    console.log(currentPlayer)
     // @ts-ignore
     return (
         <div>
@@ -47,12 +52,15 @@ function FilterSidebar() {
                    aria-label="Sidebar">
                 <div className="h-full px-3 py-4 overflow-y-auto bg-darkgray">
                     <ul className="space-y-2">
-                        <li>
-                            <p className="flex flex-col p-2 rounded-lg text-white">NBA</p>
+                        <li className="mb-8">
+                            <p className="p-2 text-xl text-white uppercase font-bold">nba tracker</p>
                         </li>
                         <li>
+                            <p className="flex flex-col p-2 text-white font-bold capitalize text-base">Filter matches & player</p>
+                        </li>
+                        <li className="pb-2">
                             <button type="button"
-                                    className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                                    className="flex items-center w-full p-2 text-base font-normal transition bg-lightgray focus:outline-purple duration-75 rounded-lg group text-white hover:bg-darkgrayHover"
                                     aria-controls="dropdown-example" data-collapse-toggle="dropdown-example"
                                     id="location-filter">
                                 <span className="flex-1 ml-3 text-left whitespace-nowrap"
@@ -66,23 +74,33 @@ function FilterSidebar() {
                                 </svg>
                             </button>
                             <ul id="dropdown-example" className="hidden py-2 space-y-2">
-                                <button onClick={() => handleTeamFilterChange("")}> Toutes</button>
-                                <button onClick={() => handleTeamFilterChange("East")}>Est</button>
-                                <button onClick={() => handleTeamFilterChange("West")}>Ouest
-                                </button>
+                                <div className="flex items-center justify-start gap-2 flex-wrap mb-8 mt-3">
+                                    <button
+                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
+                                        onClick={() => handleTeamFilterChange("")}> Toutes
+                                    </button>
+                                    <button
+                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
+                                        onClick={() => handleTeamFilterChange("East")}>Est
+                                    </button>
+                                    <button
+                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
+                                        onClick={() => handleTeamFilterChange("West")}>Ouest
+                                    </button>
+                                </div>
                                 <ul>
                                     {filteredTeams.map(team => (
-                                        <button onClick={() => setCurrentTeam(team.id)} className="lex items-center p-2 text-base font-normal text-gray-900 dark:text-white">
-                                            <li key={team.id}>{team.full_name}</li>
-                                        </button>
+                                        <li key={team.id}>
+                                            <div onClick={() => setCurrentTeam(team.id)} className="flex cursor-pointer hover:text-white hover:underline items-center p-2 text-base font-normal text-gray-400">
+                                                <p>{team.full_name}</p>
+                                            </div>
+                                        </li>
                                     ))}
                                 </ul>
                             </ul>
                         </li>
-                        
                         <li>
-                            <button type="button"
-                                className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            <button type="button" className="flex items-center bg-lightgray w-full p-2 text-base font-normal transition focus:outline-purple duration-75 rounded-lg group text-white hover:bg-darkgrayHover"
                                 aria-controls="dropdown-example-2" data-collapse-toggle="dropdown-example-2"
                                 id="location-filterPlayer">
                                 <span className="flex-1 ml-3 text-left whitespace-nowrap"
@@ -97,27 +115,31 @@ function FilterSidebar() {
                         </button>
                         <li>
                             <ul id="dropdown-example-2" className="hidden py-2 space-y-2">
-                                <button
-                                    className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                                    onClick={() => handlePositionFilterChange("G")}>Shooting Guard
-                                </button>
-                                <button
-                                    className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                                    onClick={() => handlePositionFilterChange("F")}>Small Forward
-                                </button>
-                                <button
-                                    className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                                    onClick={() => handlePositionFilterChange("G")}>Power Forward
-                                </button>
-                                <button
-                                    className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                                    onClick={() => handlePositionFilterChange("C")}>Point Guard
-                                </button>
+                                <div className="flex items-center justify-start gap-2 flex-wrap mb-8 mt-3">
+                                    <button
+                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
+                                        onClick={() => handlePositionFilterChange("G")}>S. Guard
+                                    </button>
+                                    <button
+                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
+                                        onClick={() => handlePositionFilterChange("F")}>S. Forward
+                                    </button>
+                                    <button
+                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
+                                        onClick={() => handlePositionFilterChange("G")}>P. Forward
+                                    </button>
+                                    <button
+                                        className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
+                                        onClick={() => handlePositionFilterChange("C")}>P. Guard
+                                    </button>
+                                </div>
                                 <ul>
                                     {filteredPlayers.map(player => (
-                                        <a href="#" className="lex items-center p-2 text-base font-normal text-gray-900 dark:text-white">
-                                        <li key={player.id}>{player.first_name} {player.last_name}</li>
-                                        </a>
+                                        <li key={player.id}>
+                                            <a className="flex cursor-pointer hover:text-white hover:underline items-center p-2 text-base font-normal text-gray-400">
+                                                <p>{player.first_name} {player.last_name}</p>
+                                            </a>
+                                        </li>
                                     ))}
                                 </ul>
                             </ul>
@@ -129,8 +151,11 @@ function FilterSidebar() {
 
             <div className="p-4 sm:ml-64">
                 <div className="p-4 border-2 border-gray-200 rounded-lg dark:border-gray-700">
+                    <h2 className="font-bold text-2xl mb-4">Welcome Quentin 👋</h2>
                     <div className="grid grid-rows-3 grid-flow-col gap-4">
-                        <div className="col-span-2 bg-red-500">02</div>
+                        <div className="col-span-2 ">
+                            <PlayerDashoard currentPlayer={currentPlayer}/>
+                        </div>
                         <div className="row-span-2 col-span-2">
                             <MatchesList currentTeam={currentTeam}/>
                         </div>
