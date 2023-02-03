@@ -93,8 +93,11 @@ function Register() {
 
 	// return the form
 	return (
-		<div className="">
-
+		<div className="relative h-screen flex flex-col items-center justify-center text-center text-white py-0 px-3">
+			<div className="video-docker absolute top-0 left-0 w-full h-full overflow-hidden">
+				<video className="min-w-full min-h-full absolute object-cover" src="/assets/NBA Motion_ Top Plays In Special FX _ Part 1.mp4"
+					   type="video/mp4" autoPlay muted loop></video>
+			</div>
 			<div className={"w-full flex justify-center "}>
 				<form onSubmit={handleSubmit}>
 					<div className="mb-6">
