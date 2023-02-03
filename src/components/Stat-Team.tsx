@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 
 
-function MatchesList({currentTeam}: any) {
+function MatchStat({currentTeam}: any) {
     const [items, setItems] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 8;
@@ -46,11 +46,6 @@ function MatchesList({currentTeam}: any) {
                             <td className="px-6 py-4">
                                 {item.visitor_team.full_name}
                             </td>
-                            <td className="px-6 py-4">
-                                <button>
-                                   Statistics
-                                </button>
-                            </td>
                         </tr>
                     ))}
                     </tbody>
@@ -61,7 +56,7 @@ function MatchesList({currentTeam}: any) {
                     {currentPage > 1 && (
                         <li>
                             <button onClick={() => setCurrentPage(currentPage - 1)}
-                               className="block px-3 py-2 leading-tight ml-0 rounded-l-lg bg-darkgray text-gray-400 hover:bg-darkgrayHover hover:text-white">
+                                    className="block px-3 py-2 leading-tight ml-0 rounded-l-lg bg-darkgray text-gray-400 hover:bg-darkgrayHover hover:text-white">
                                 <span className="sr-only">Previous</span>
                                 <svg aria-hidden="true" className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -72,7 +67,7 @@ function MatchesList({currentTeam}: any) {
                     )}
                     <li>
                         <button onClick={() => setCurrentPage( 1)}
-                           className="px-3 py-2 bg-darkgray text-gray-400 hover:bg-darkgrayHover hover:text-white rounded-l">1</button>
+                                className="px-3 py-2 bg-darkgray text-gray-400 hover:bg-darkgrayHover hover:text-white rounded-l">1</button>
                     </li>
                     <li>
                         <button onClick={() => setCurrentPage(currentPage + 1)} className="block px-3 py-2 leading-tight rounded-r-lg bg-darkgray text-gray-400 hover:bg-darkgrayHover hover:text-white">
@@ -89,4 +84,4 @@ function MatchesList({currentTeam}: any) {
     )
 }
 
-export default MatchesList
+export default MatchStat

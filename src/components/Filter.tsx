@@ -1,6 +1,7 @@
 import {useState, useEffect, SetStateAction, createContext, useContext} from "react";
 import MatchesList from "./MatchesList";
 import PlayerDashoard from "./filter-player";
+import MatchStat from "./Stat-Team";
 
 function FilterSidebar() {
     const [teams, setTeams] = useState([]);
@@ -159,7 +160,9 @@ function FilterSidebar() {
                         <div className="row-span-2 col-span-2">
                             <MatchesList currentTeam={currentTeam}/>
                         </div>
-                        <div className="row-span-3 bg-red-500">01</div>
+                        <div className="row-span-3 bg-red-500">
+                        <MatchStat currentTeam={currentTeam}/>
+                        </div>
                     </div>
                 </div>
             </div>
