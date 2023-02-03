@@ -90,7 +90,6 @@ function FilterSidebar() {
                                 </ul>
                             </ul>
                         </li>
-                        
                         <li>
                             <button type="button"
                                 className="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
@@ -143,7 +142,7 @@ function FilterSidebar() {
             <div className="p-4 sm:ml-64">
                 <div className="p-4 border-2 border-gray-200 rounded-lg dark:border-gray-700">
                     <div className="grid grid-rows-3 grid-flow-col gap-4">
-                        <div className="col-span-2">
+                        <div className="col-span-2 ">
                             <PlayerDashoard currentPlayer={currentPlayer}/>
                         </div>
                         <div className="row-span-2 col-span-2">

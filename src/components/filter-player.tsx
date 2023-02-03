@@ -10,10 +10,9 @@ import {useEffect, useState} from 'react'
         console.log(player)
     }, [currentPlayer])
 
-
-    return (
-        <div className="PlayerOne">
-            <div className="bg-blue-700 hover:bg-blue-800  rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        return (
+        <div className="PlayerOne w-full h-full bg-[url('./src/assets/banner-nba.jpg')] bg-cover ">
+            <div className="ounded-lg text-sm px-5 py-2.5 ">
                 <div className="mb-8 flex place-content-evenly ">
                     <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                         <svg className="absolute w-12 h-12 text-gray-400 -left-1" fill="currentColor"
@@ -24,7 +23,7 @@ import {useEffect, useState} from 'react'
                     </div>
 
                     <p>
-                        <span className="text-white font-bold">{player?.first_name} {player?.last_name}</span>
+                        <p className="text-white font-bold">{player?.first_name} {player?.last_name}</p>
                         {player?.team.full_name}
                         <span className="text-white font-bold">{player?.division}</span>
 
