@@ -8,8 +8,6 @@ import {useEffect, useState} from 'react'
             .then(data => setPlayer(data))
     }, [currentPlayer])
 
-        console.log(player)
-
         //function that converts feet to meters
         function feetToMeters(feet: number, inches: number) {
             return ((feet * 12 + inches) * 0.0254).toFixed(2)

@@ -1,6 +1,7 @@
 import {useState, useEffect, SetStateAction, createContext, useContext} from "react";
 import MatchesList from "./MatchesList";
 import PlayerDashoard from "./filter-player";
+import TopTeams from "./TopTeams";
 
 function FilterSidebar() {
     const [teams, setTeams] = useState([]);
@@ -32,11 +33,8 @@ function FilterSidebar() {
         setPositionFilter(filter);
     };
 
-
     const filteredPlayers = players.filter(player => positionFilter === "" || player.position === positionFilter);
 
-
-    console.log(currentPlayer)
     // @ts-ignore
     return (
         <div>
@@ -159,7 +157,9 @@ function FilterSidebar() {
                         <div className="row-span-2 col-span-2">
                             <MatchesList currentTeam={currentTeam}/>
                         </div>
-                        <div className="row-span-3 bg-red-500">01</div>
+                        <div className="row-span-3 bg-darkgray rounded-xl">
+                            <TopTeams />
+                        </div>
                     </div>
                 </div>
             </div>
