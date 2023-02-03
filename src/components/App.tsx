@@ -1,17 +1,22 @@
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 import reactLogo from '../assets/react.svg'
 import '../scss/views/App.scss'
+import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
+import MatchesList from "./MatchesList";
+import Filter from "./Filter";
+
 
 import Register from './RegisterComponent'
 import Login from './LoginComponent'
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <div className="App">
-    </div>
-  )
+    // @ts-ignore
+    return (
+        <div className="App">
+            <Filter />
+        </div>
+    )
 }
 
 export default App
