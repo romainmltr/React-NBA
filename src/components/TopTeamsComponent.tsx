@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Obj, ArrayRating } from "../types/TeamType";
+import Loading from "../common/Loading";
 
 // @ts-ignore
 function TopTeams() {
@@ -59,6 +60,8 @@ function TopTeams() {
 		<div className="TopTeams p-8">
 			<h1 className="text-2xl font-bold mb-10">Top 5 Teams</h1>
 			<ul className="flex flex-col gap-3">
+				{items.length === 0 && <Loading />}
+				
 				{topTeam.map((obj: ArrayRating, index: number) => (
 					<li key={index}>
 						<div className="flex items-center justify-between flex-wrap">

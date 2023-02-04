@@ -1,7 +1,7 @@
 <div align="center" id="top"> 
   <img src="./public/vite.svg" alt="React Nba" />
   &#xa0;
-  
+
 </div>
 
 <h1 align="center">React NbA Tracker</h1>
@@ -29,6 +29,7 @@ This project is a simple NBA tracker app, where you can see the latest news and 
 :heavy_check_mark: Team dashboard;\
 :heavy_check_mark: Player dashboard;\
 :heavy_check_mark: Filter by Team & Player;\
+:heavy_check_mark: Router system;\
 ## :rocket: Technologies ##
 
 The following tools were used in this project:
@@ -69,7 +70,7 @@ This project is under license from MIT. For more details, see the [LICENSE](LICE
 
 Made with :heart: by 
 <a href="https://github.com/romainmltr" target="_blank">Romain</a>
-<a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">Quentin</a>
+<a href="https://github.com/QuentinDrouet" target="_blank">Quentin</a>
 <a href="https://github.com/GrandEmpereur" target="_blank">Patrick</a>
 
 &#xa0;

@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { getGames, getGamesByTeam } from "../services/GamesServices";
+import Loading from "../common/Loading";
 
 function MatchesList({ currentTeam }: any) {
 	const [items, setItems] = useState([]);
@@ -8,18 +10,14 @@ function MatchesList({ currentTeam }: any) {
 
 	useEffect(() => {
 		if (firstFetch) {
-			fetch(
-				`https://www.balldontlie.io/api/v1/games?page=${currentPage}&per_page=${itemsPerPage}`
-			)
-				.then((response) => response.json())
-				.then((data) => setItems(data.data));
+			getGames(currentPage, itemsPerPage).then((data) =>
+				setItems(data.data)
+			);
 			setFirstFetch(false);
 		} else {
-			fetch(
-				`https://www.balldontlie.io/api/v1/games?page=${currentPage}&per_page=${itemsPerPage}&team_ids[]=${currentTeam}`
-			)
-				.then((response) => response.json())
-				.then((data) => setItems(data.data));
+			getGamesByTeam(currentPage, itemsPerPage, currentTeam).then(
+				(data) => setItems(data.data)
+			);
 		}
 	}, [currentPage, currentTeam]);
 
@@ -35,6 +33,7 @@ function MatchesList({ currentTeam }: any) {
 				</div>
 				<table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 					<tbody>
+						{items.length === 0 && <Loading />}
 						{items.map((item: any) => (
 							<tr
 								key={item.id}

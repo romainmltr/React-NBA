@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { Player } from "../types/PlayerType";
 import { getPlayerById } from "../services/PlayerServices";
+import Loading from "../common/Loading";
 
-function PlayerDashboard({ currentPlayer }: { currentPlayer: number }) {
+function PlayerDashboard({ currentPlayer }: any) {
 	const [player, setPlayer] = useState<Player>();
 
 	useEffect(() => {
-		getPlayerById(currentPlayer).then((data) => setPlayer(data.data));
+		getPlayerById(currentPlayer).then((data) => setPlayer(data));
 	}, [currentPlayer]);
 
 	//function that converts feet to meters
@@ -23,6 +24,7 @@ function PlayerDashboard({ currentPlayer }: { currentPlayer: number }) {
 		<div className="PlayerOne rounded-xl relative z-0 w-full h-full bg-banner bg-cover">
 			<div className="rounded-xl absolute top-0 z-10 left-0 bg-purple opacity-30 w-full h-full"></div>
 			<div className="relative z-20 p-8">
+				{!player ? <Loading /> : ""}
 				<div className="text-3xl font-bold">
 					<p>{player?.first_name}</p>
 					<p>{player?.last_name}</p>

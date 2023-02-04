@@ -10,8 +10,8 @@ export async function getPlayers() {
     return response.data;
 }
 
-export async function getPlayerById(id: number) {
-    const response = await instance.get('/' + id);
+export async function getPlayerById(currentPlayer: number) {
+    const response = await instance.get(`/${currentPlayer}`);
     return response.data;
 }
 
