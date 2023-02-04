@@ -33,19 +33,19 @@ function TopTeams() {
         }
     })
 
-    //get the 10 highest scores of the array
-    const topTen = arrayRating.sort((a, b) => b.score - a.score).slice(0, 15)
+    //get the 5 highest scores of the array
+    const topTeam = arrayRating.sort((a, b) => b.score - a.score).slice(0, 5)
 
     // @ts-ignore
     return (
         <div className="TopTeams p-8">
-            <h1 className="text-2xl font-bold mb-10">Top 15 Teams</h1>
+            <h1 className="text-2xl font-bold mb-10">Top 5 Teams</h1>
             <ul className="flex flex-col gap-3">
-                {topTen.map((obj, index) => (
+                {topTeam.map((obj, index) => (
                     <li key={index}>
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between flex-wrap">
                             <p>{obj.full_name}</p>
-                            <p className="text-purple font-bold">{obj.score}<span className="text-gray-400 text-sm ml-1">pts</span></p>
+                            <p className="text-purple font-bold">{obj.score}<span className="text-gray-400 ml-1">pts</span></p>
                         </div>
                     </li>
                 ))}

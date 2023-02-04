@@ -25,7 +25,7 @@ function MatchesList({currentTeam}: any) {
         <div className="MatchesList">
             <div className="relative overflow-x-auto shadow-md dark:bg-darkgray sm:rounded-lg">
                 <div className="flex px-6 py-6 items-center justify-between">
-                    <h3 className="text-xl font-bold">All matches</h3>
+                    <h3 className="text-3xl font-bold">All matches</h3>
                     <p className="underline text-gray-400">Page {currentPage}</p>
                 </div>
                 <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">

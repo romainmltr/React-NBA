@@ -21,17 +21,17 @@ import {useEffect, useState} from 'react'
         return (
         <div className="PlayerOne rounded-xl relative z-0 w-full h-full bg-banner bg-cover">
             <div className="rounded-xl absolute top-0 z-10 left-0 bg-purple opacity-30 w-full h-full"></div>
-            <div className="relative z-20 pt-8 pl-10">
-                <div className="text-4xl font-bold">
+            <div className="relative z-20 p-8">
+                <div className="text-3xl font-bold">
                     <p>{player?.first_name}</p>
                     <p>{player?.last_name}</p>
                 </div>
                 <div className="mt-3">
-                    {player?.position} at {player?.team.full_name}
+                    {player?.team.full_name}
                 </div>
-                <div className="flex mt-10 items-center gap-20">
+                <div className="flex mt-10 items-center justify-between w-2/5 flex-wrap">
                     {player?.height_feet && (
-                        <div>
+                        <div className="mb-4">
                             <p className="uppercase text-sm">height</p>
                             <p><span className="font-bold text-2xl">{player?.height_feet}</span> ft <span className="font-bold text-2xl">{player?.height_inches}</span> in</p>
                             <p className="text-gray-300">/ {feetToMeters(player?.height_feet, player?.height_inches)} m</p>
@@ -39,7 +39,7 @@ import {useEffect, useState} from 'react'
                     )}
 
                     {player?.weight_pounds && (
-                        <div>
+                        <div className="mb-4">
                             <p className="uppercase text-sm">weight</p>
                             <p><span className="font-bold text-2xl">{player?.weight_pounds}</span> lb</p>
                             <p className="text-gray-300">/ {poundsToKilograms(player?.weight_pounds)} kg</p>

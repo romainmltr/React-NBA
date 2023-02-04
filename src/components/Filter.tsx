@@ -150,15 +150,17 @@ function FilterSidebar() {
             <div className="p-4 sm:ml-64">
                 <div className="p-4 border-2 border-gray-200 rounded-lg dark:border-gray-700">
                     <h2 className="font-bold text-2xl mb-4">Welcome Quentin 👋</h2>
-                    <div className="grid grid-rows-3 grid-flow-col gap-4">
-                        <div className="col-span-2 ">
+                    <div className="grid grid-cols-2 gap-4 mb-4">
+                        <div>
                             <PlayerDashoard currentPlayer={currentPlayer}/>
                         </div>
+                        <div className="bg-darkgray rounded-xl">
+                            <TopTeams />
+                        </div>
+                    </div>
+                    <div className="grid grid-rows-3 grid-flow-col gap-4">
                         <div className="row-span-2 col-span-2">
                             <MatchesList currentTeam={currentTeam}/>
-                        </div>
-                        <div className="row-span-3 bg-darkgray rounded-xl">
-                            <TopTeams />
                         </div>
                     </div>
                 </div>
