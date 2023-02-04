@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as Auth from "../services/AuthServices";
-import { User } from "../types/User.type";
-import { v4 as uuid } from '@lukeed/uuid'
+import { User } from "../types/UserType";
 import bcrypt from 'bcryptjs'
 
 function Login() {
@@ -20,11 +19,11 @@ function Login() {
         });
     }
 
-    const [userFromDb , setuserFromDb] = useState([] as User[]);
+    const [userFromDb , setUserFromDb] = useState([] as User[]);
     // get all users from the database
     useEffect(() => {
         Auth.getUsers().then((users) => {
-            setuserFromDb(users);
+            setUserFromDb(users);
         });
     }, []);
 

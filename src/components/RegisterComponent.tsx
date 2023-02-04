@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as Auth from "../services/AuthServices";
-import { User } from "../types/User.type";
+import { User } from "../types/UserType";
 import { v4 as uuid } from '@lukeed/uuid'
 import bcrypt from 'bcryptjs'
 

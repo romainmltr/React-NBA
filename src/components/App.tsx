@@ -1,8 +1,7 @@
 import '../scss/views/App.scss'
-import Filter from "./Filter";
+import Filter from "./FilterComponent";
 
 function App() {
-    // @ts-ignore
     return (
         <div className="App">
             <Filter />

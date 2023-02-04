@@ -1,6 +1,6 @@
 // create a new user in the jsonbin.io database
 import axios from 'axios';
-import { User } from '../types/User.type';
+import { User } from '../types/UserType';
 
 // Définition de l'instance d'Axios
 let instance: any = null
@@ -25,36 +25,6 @@ export async function CreateUser(user: User) {
     return response.data;
 }
 
-// create the login system with jsonbin.io and filter errors
-export async function Login(email: string, password: string) {
-    const users = await getUsers();
-    const user = users.find((user: User) => user.email === email);
-    if (user) {
-        if (user.password === password) {
-            // set to local storage the user is logged in
-            localStorage.setItem('isLogged', 'true');
-            return {
-                success: 200,
-                message: 'Login successful',
-            }
-        } else {
-            throw new Error('Wrong password');
-        }
-    } else {
-        throw new Error('Email not found');
-    }
-}
-
-export async function isLogged() {
-    // check if user is logged in
-    const checkIfUserIsLogged = localStorage.getItem('isLogged');
-    if (checkIfUserIsLogged === 'true') {
-        return true;
-    } else {
-        return false;
-    }
-}
-
 // Mise à jour de l'instance d'Axios
 export async function updateAxiosInstance() {
     const key = import.meta.env.VITE_JSONBIN_API_KEY;
@@ -66,6 +36,4 @@ export async function updateAxiosInstance() {
             'X-Master-Key': key 
         }
     });
-
-    console.log('Axios instance updated');
 }
