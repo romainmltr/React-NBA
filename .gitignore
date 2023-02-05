@@ -332,3 +332,6 @@ $RECYCLE.BIN/
 .idea
 
 config/settings_data.json
+
+#remove vitest fils
+
