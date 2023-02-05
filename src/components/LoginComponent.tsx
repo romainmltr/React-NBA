@@ -110,7 +110,9 @@ function Login() {
                         </label>
                         <input
                             className={`w-60 shadow-sm border border-gray-300 text-sm rounded-lg block w-full p-2.5 bg-lightgray border-gray-600 placeholder-gray-400 text-white focus:ring-purple focus:border-purple focus:outline-purple shadow-sm-light ${
-								error == Traduction.ErrorMessagesTraduction.emailIsRequired
+								error == Traduction.ErrorMessagesTraduction.emailIsRequired ||
+                                error == Traduction.ErrorMessagesTraduction.emailIsIncorrect ||
+                                error == Traduction.ErrorMessagesTraduction.allFieldsAreRequired
 								? "border-red-500" : ""
 							}`}
                             type="email"
@@ -133,7 +135,8 @@ function Login() {
                             placeholder={"Password"}
                             className={`w-60 shadow-sm border border-gray-300 text-sm rounded-lg block w-full p-2.5 bg-lightgray border-gray-600 placeholder-gray-400 text-white focus:ring-purple focus:border-purple focus:outline-purple shadow-sm-light ${
 								error == Traduction.ErrorMessagesTraduction.passwordIsRequired ||
-                                error == Traduction.ErrorMessagesTraduction.passwordIsIncorrect
+                                error == Traduction.ErrorMessagesTraduction.passwordIsIncorrect ||
+                                error == Traduction.ErrorMessagesTraduction.allFieldsAreRequired
 								? "border-red-500" : ""
 							}`}
                             onChange={handleChange}

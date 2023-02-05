@@ -13,7 +13,7 @@
   <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
   <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
   <a href="#memo-license">License</a> &#xa0; | &#xa0;
-  <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">Author</a>
+  <a href="#memo-author" target="_blank">Author</a>
 </p>
 
 <br>
@@ -80,6 +80,7 @@ VITE_JSONBIN_BIN_ID = "63da859cc0e7653a056bf4f6"
 This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
 
 
+## :memo: Author ##
 Made with :heart: by 
 <a href="https://github.com/romainmltr" target="_blank">Romain</a>
 <a href="https://github.com/QuentinDrouet" target="_blank">Quentin</a>
