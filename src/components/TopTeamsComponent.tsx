@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Obj, ArrayRating } from "../types/TeamType";
 import Loading from "../common/Loading";
+import Traduction from "../languages/Traduction";
 
 // @ts-ignore
 function TopTeams() {
@@ -58,7 +59,9 @@ function TopTeams() {
 	// @ts-ignore
 	return (
 		<div className="TopTeams p-8">
-			<h1 className="text-2xl font-bold mb-10">Top 5 Teams</h1>
+			<h1 className="text-2xl font-bold mb-10">
+				{Traduction.TopTeamsComponentTraduction.topTeams}
+			</h1>
 			<ul className="flex flex-col gap-3">
 				{items.length === 0 && <Loading />}
 				
@@ -68,7 +71,9 @@ function TopTeams() {
 							<p>{obj.full_name}</p>
 							<p className="text-purple font-bold">
 								{obj.score}
-								<span className="text-gray-400 ml-1">pts</span>
+								<span className="text-gray-400 ml-1">
+									{Traduction.TopTeamsComponentTraduction.points}
+								</span>
 							</p>
 						</div>
 					</li>

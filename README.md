@@ -62,6 +62,18 @@ $ yarn dev
 # Build the project
 $ yarn build
 ```
+## :checkered_flag: Env ##
+
+```bash
+# Create a .env file in the root of the project
+duplicate the .env.example file and rename it to .env
+
+# Add your API key
+VITE_JSONBIN_API_KEY = "\$2b\$10\$KuOAMdG1jiZBJe92jjJe5.vrohu.y3Qh5MguyGbdE6CwGfbGYxgQ2"
+
+# Add your bin id
+VITE_JSONBIN_BIN_ID = "63da859cc0e7653a056bf4f6"
+```
 
 ## :memo: License ##
 

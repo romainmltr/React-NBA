@@ -1,19 +1,22 @@
-// create a new user in the jsonbin.io database
 import axios from 'axios';
 
-// Définition de l'instance d'Axios
+/* Creating an instance of axios and then calling the updateAxiosInstance function. */
 let instance: any = null
 updateAxiosInstance()
 
+/**
+ * Get all users from mongodb
+ * @returns An array of objects.
+ */
 export async function getTeams() {
-    // get all users from mongodb
     const response = await instance.get('?per_page=100');
     return response.data;
 }
 
-
-
-// Mise à jour de l'instance d'Axios
+/**
+ * This function creates a new axios instance with a new baseURL and assigns it to the instance
+ * variable.
+ */
 export async function updateAxiosInstance() {
     instance = axios.create({
         baseURL: 'https://www.balldontlie.io/api/v1/teams',

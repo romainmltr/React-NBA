@@ -10,21 +10,29 @@ import { Team } from "../types/TeamType";
 import { Player } from "../types/PlayerType";
 import { getTeams } from "../services/TeamServices";
 import { getPlayers } from "../services/PlayerServices";
+import Traduction from "../languages/Traduction";
 
 function FilterSidebar() {
+	/* A hook that is called when the component is mounted. */
 	const [teams, setTeams] = useState<Team[]>([]);
 	const [locationFilter, setLocationFilter] = useState("");
 	const [players, setPlayers] = useState<Player[]>([]);
 	const [positionFilter, setPositionFilter] = useState("");
 	const [currentPlayer, setCurrentPlayer] = useState(13);
 	const [currentTeam, setCurrentTeam] = useState(1);
-	const userName = localStorage.getItem("userName");
+	const userName = localStorage.getItem("user");
 
+	/* A hook that is called when the component is mounted. */
 	useEffect(() => {
 		getTeams().then((data) => setTeams(data.data));
 		getPlayers().then((data) => setPlayers(data.data));
 	}, []);
 
+	/**
+	 * The function takes a string as an argument and sets the state of the locationFilter to the value of
+	 * the argument.
+	 * @param filter - SetStateAction<string>
+	 */
 	const handleTeamFilterChange = (filter: SetStateAction<string>) => {
 		setLocationFilter(filter);
 	};
@@ -33,10 +41,21 @@ function FilterSidebar() {
 		(team: Team) => locationFilter === "" || team.conference === locationFilter
 	);
 
+	/**
+	 * The function takes a string as an argument and sets the state of the positionFilter variable to the
+	 * value of the argument.
+	 * @param filter - SetStateAction<string>
+	 */
 	const handlePositionFilterChange = (filter: SetStateAction<string>) => {
 		setPositionFilter(filter);
 	};
 
+	const handleLogout = () => {
+		localStorage.clear();
+		window.location.href = "/";
+	};
+
+	/* Filtering the players array based on the positionFilter state. */
 	const filteredPlayers = players.filter(
 		(player: Player) => positionFilter === "" || player.position === positionFilter
 	);
@@ -50,7 +69,9 @@ function FilterSidebar() {
 				type="button"
 				className="hidden inline-flex items-center p-2 mt-2 ml-3 rounded-lg bg-red-600 hover:bg-gray-100 focus:outline-none "
 			>
-				<span className="sr-only text-amber-50">Open sidebar</span>
+				<span className="sr-only text-amber-50">
+					(Traduction.FilterComponentTraduction.openSideBar)
+				</span>
 			</button>
 
 			<aside
@@ -62,12 +83,12 @@ function FilterSidebar() {
 					<ul className="space-y-2">
 						<li className="mb-8">
 							<p className="p-2 text-xl text-white uppercase font-bold">
-								nba tracker
+								{Traduction.FilterComponentTraduction.Title}
 							</p>
 						</li>
 						<li>
 							<p className="flex flex-col p-2 text-white font-bold capitalize text-base">
-								Filter matches & player
+								{ Traduction.FilterComponentTraduction.filterName}
 							</p>
 						</li>
 						<li className="pb-2">
@@ -82,7 +103,7 @@ function FilterSidebar() {
 									className="flex-1 ml-3 text-left whitespace-nowrap"
 									sidebar-toggle-item="true"
 								>
-									Division
+									{Traduction.FilterComponentTraduction.division}
 								</span>
 								<svg
 									sidebar-toggle-item="true"
@@ -110,7 +131,7 @@ function FilterSidebar() {
 										}
 									>
 										{" "}
-										Toutes
+										{Traduction.FilterComponentTraduction.allDivisions}
 									</button>
 									<button
 										className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
@@ -118,7 +139,7 @@ function FilterSidebar() {
 											handleTeamFilterChange("East")
 										}
 									>
-										Est
+										{Traduction.FilterComponentTraduction.divisionEst}
 									</button>
 									<button
 										className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
@@ -126,7 +147,7 @@ function FilterSidebar() {
 											handleTeamFilterChange("West")
 										}
 									>
-										Ouest
+										{Traduction.FilterComponentTraduction.divisionOuest}
 									</button>
 								</div>
 								<ul>
@@ -157,7 +178,7 @@ function FilterSidebar() {
 									className="flex-1 ml-3 text-left whitespace-nowrap"
 									sidebar-toggle-item="true"
 								>
-									Player
+									{Traduction.FilterComponentTraduction.player}
 								</span>
 								<svg
 									sidebar-toggle-item="true"
@@ -185,7 +206,7 @@ function FilterSidebar() {
 												handlePositionFilterChange("G")
 											}
 										>
-											S. Guard
+											{ Traduction.FilterComponentTraduction.playerPositionGuardS }
 										</button>
 										<button
 											className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
@@ -193,7 +214,7 @@ function FilterSidebar() {
 												handlePositionFilterChange("F")
 											}
 										>
-											S. Forward
+											{ Traduction.FilterComponentTraduction.playerPositionForwardS }
 										</button>
 										<button
 											className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
@@ -201,7 +222,7 @@ function FilterSidebar() {
 												handlePositionFilterChange("G")
 											}
 										>
-											P. Forward
+											{ Traduction.FilterComponentTraduction.playerPositionForwardP }
 										</button>
 										<button
 											className="flex items-center w-full text-sm w-auto font-normal transition duration-75 hover:bg-purple rounded-full group text-purple focus:outline-purple focus:bg-purple focus:text-white bg-darkgray border border-purple hover:text-white"
@@ -209,7 +230,7 @@ function FilterSidebar() {
 												handlePositionFilterChange("C")
 											}
 										>
-											P. Guard
+											{ Traduction.FilterComponentTraduction.playerPositionGuardP }
 										</button>
 									</div>
 									<ul>
@@ -234,6 +255,22 @@ function FilterSidebar() {
 								</ul>
 							</li>
 						</li>
+
+						{/* add button at the en to logout */}
+						<li className="pt-2">
+							<button
+								type="button"
+								className="flex items-center w-full p-2 text-base font-normal transition bg-red-500 duration-75 rounded-lg group text-white hover:bg-darkgrayHover hover:border-red-500"
+								id="Logout"
+								onClick={handleLogout}
+							>
+								<span
+									className="flex-1 ml-3 text-left whitespace-nowrap"
+								>
+									{Traduction.FilterComponentTraduction.logout}
+								</span>
+							</button>
+						</li>
 					</ul>
 				</div>
 			</aside>
@@ -241,11 +278,11 @@ function FilterSidebar() {
 			<div className="p-4 sm:ml-64">
 				<div className="p-4 border-2 border-gray-200 rounded-lg dark:border-gray-700">
 					<h2 className="font-bold text-2xl mb-4">
-						Welcome 
+						{Traduction.FilterComponentTraduction.welcome}
 						{userName ? (
 							<span className="text-purple mx-2">{userName}</span>
 						) : (
-							<span className="text-purple mx-2">Guest</span>
+							<span className="text-purple mx-2">{ Traduction.FilterComponentTraduction.guest }</span>
 						)}
 						👋
 					</h2>

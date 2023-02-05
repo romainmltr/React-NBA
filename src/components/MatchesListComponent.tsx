@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { getGames, getGamesByTeam } from "../services/GamesServices";
 import Loading from "../common/Loading";
+import Traduction from "../languages/Traduction";
 
 function MatchesList({ currentTeam }: any) {
+	/* Setting the initial state of the component. */
 	const [items, setItems] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const itemsPerPage = 8;
 	const [firstFetch, setFirstFetch] = useState(true);
 
+	/* A hook that is called when the component is mounted and when the component is updated. */
 	useEffect(() => {
 		if (firstFetch) {
 			getGames(currentPage, itemsPerPage).then((data) =>
@@ -21,14 +24,15 @@ function MatchesList({ currentTeam }: any) {
 		}
 	}, [currentPage, currentTeam]);
 
-	// @ts-ignore
 	return (
 		<div className="MatchesList">
 			<div className="relative overflow-x-auto shadow-md dark:bg-darkgray sm:rounded-lg">
 				<div className="flex px-6 py-6 items-center justify-between">
-					<h3 className="text-3xl font-bold">All matches</h3>
+					<h3 className="text-3xl font-bold">
+						{Traduction.MatchesListComponentTraduction.matches}
+					</h3>
 					<p className="underline text-gray-400">
-						Page {currentPage}
+						{Traduction.MatchesListComponentTraduction.page} {currentPage}
 					</p>
 				</div>
 				<table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -87,7 +91,9 @@ function MatchesList({ currentTeam }: any) {
 								onClick={() => setCurrentPage(currentPage - 1)}
 								className="block px-3 py-2 leading-tight ml-0 rounded-l-lg bg-darkgray text-gray-400 hover:bg-darkgrayHover hover:text-white"
 							>
-								<span className="sr-only">Previous</span>
+								<span className="sr-only">
+									{Traduction.MatchesListComponentTraduction.previous}
+								</span>
 								<svg
 									aria-hidden="true"
 									className="w-5 h-5"
@@ -113,7 +119,9 @@ function MatchesList({ currentTeam }: any) {
 							onClick={() => setCurrentPage(currentPage + 1)}
 							className="block px-3 py-2 leading-tight rounded-r-lg bg-darkgray text-gray-400 hover:bg-darkgrayHover hover:text-white"
 						>
-							<span className="sr-only">Next</span>
+							<span className="sr-only">
+								{Traduction.MatchesListComponentTraduction.next}
+							</span>
 							<svg
 								aria-hidden="true"
 								className="w-5 h-5"

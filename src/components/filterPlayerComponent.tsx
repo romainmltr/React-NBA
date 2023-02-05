@@ -2,20 +2,35 @@ import { useEffect, useState } from "react";
 import { Player } from "../types/PlayerType";
 import { getPlayerById } from "../services/PlayerServices";
 import Loading from "../common/Loading";
+import Traduction from "../languages/Traduction";
 
 function PlayerDashboard({ currentPlayer }: any) {
+	/* Creating a state variable called player and a function called setPlayer. */
 	const [player, setPlayer] = useState<Player>();
 
+	/* A hook that is called when the component is mounted. It is also called when the currentPlayer
+	changes. */
 	useEffect(() => {
 		getPlayerById(currentPlayer).then((data) => setPlayer(data));
 	}, [currentPlayer]);
 
-	//function that converts feet to meters
+
+	/**
+	 * FeetToMeters takes two numbers, feet and inches, and returns a number.
+	 * @param {number} feet - number - The number of feet.
+	 * @param {number} inches - number - The number of inches.
+	 * @returns the value of the calculation.
+	 */
 	function feetToMeters(feet: number, inches: number) {
 		return ((feet * 12 + inches) * 0.0254).toFixed(2);
 	}
 
-	//function that converts pounds to kilograms
+
+	/**
+	 * This function takes a number of pounds and returns the number of kilograms.
+	 * @param {number} pounds - number - The number of pounds to convert to kilograms.
+	 * @returns A function that takes a number and returns a number.
+	 */
 	function poundsToKilograms(pounds: number) {
 		return (pounds * 0.453592).toFixed(2);
 	}
@@ -33,7 +48,9 @@ function PlayerDashboard({ currentPlayer }: any) {
 				<div className="flex mt-10 items-center justify-between w-2/5 flex-wrap">
 					{player?.height_feet && (
 						<div className="mb-4">
-							<p className="uppercase text-sm">height</p>
+							<p className="uppercase text-sm">
+								{Traduction.FilterPlayerComponentTraduction.height}
+							</p>
 							<p>
 								<span className="font-bold text-2xl">
 									{player?.height_feet}
@@ -57,7 +74,9 @@ function PlayerDashboard({ currentPlayer }: any) {
 
 					{player?.weight_pounds && (
 						<div className="mb-4">
-							<p className="uppercase text-sm">weight</p>
+							<p className="uppercase text-sm">
+								{Traduction.FilterPlayerComponentTraduction.weight}
+							</p>
 							<p>
 								<span className="font-bold text-2xl">
 									{player?.weight_pounds}
